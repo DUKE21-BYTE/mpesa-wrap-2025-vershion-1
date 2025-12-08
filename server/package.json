@@ -1,0 +1,23 @@
+{
+    "name": "mpesa-wrapped-server",
+    "version": "1.0.0",
+    "description": "Backend parsing engine for M-PESA Wrapped 2025",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon server.js"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.18.2",
+        "multer": "^1.4.5-lts.1",
+        "pdf-parse": "^1.1.1",
+        "pdfjs-dist": "^5.4.449",
+        "tesseract.js": "^5.0.3",
+        "xlsx": "^0.18.5"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.2"
+    }
+}

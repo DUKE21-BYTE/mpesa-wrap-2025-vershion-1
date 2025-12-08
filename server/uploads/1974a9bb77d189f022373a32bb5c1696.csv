@@ -1,0 +1,4 @@
+Date,Details,Amount,Paid In,Balance
+2025-01-01 10:00:00,QKB12345 Confirmed. Ksh500.00 sent to JOHN DOE 0712345678,500,,1000
+2025-01-02 14:30:00,QKB67890 Confirmed. You have received Ksh2000.00 from JANE DOE,2000,2000,3000
+2025-01-03 09:15:00,QKC11223 Confirmed. Ksh150.00 sent to KPLC PREPAID for account 12345,,150,2850
