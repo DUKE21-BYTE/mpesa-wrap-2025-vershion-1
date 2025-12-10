@@ -13,11 +13,40 @@ if (apiKey) {
 
 export async function generateFinancialInsights(transactions: any[]) {
     if (!model) {
-        return {
-            vibe: "Offline Mode",
-            tip: "Add GEMINI_API_KEY to .env to unlock AI insights!",
-            persona: "The Offline Saver"
-        };
+        // --- Local "Smart" Fallback ---
+        // Basic rule-based logic to make it interesting without an API Key
+        const totalIn = transactions.filter(t => t.type === 'RECEIVE').reduce((acc, t) => acc + t.amount, 0);
+        const totalOut = transactions.filter(t => t.type === 'SEND' || t.type === 'PAYBILL').reduce((acc, t) => acc + t.amount, 0);
+        const ratio = totalOut > 0 ? totalIn / totalOut : 0;
+
+        let vibe = "Balancing act ⚖️";
+        let tip = "Try to save at least 10% of your inflows.";
+        let persona = "The Strategist";
+
+        // Logic based on spending habits
+        if (totalOut > totalIn) {
+            vibe = "Living large (maybe too large?) 💸";
+            tip = "Your outflow exceeds your inflow. Cut back on discretionary spending.";
+            persona = "The Big Spender";
+        } else if (ratio > 2) {
+            vibe = "Stacking paper 💰";
+            tip = "You're saving well! Consider investing your surplus.";
+            persona = "The Saver";
+        } else {
+            // Check categories based on descriptions
+            const descriptions = transactions.map(t => t.description.toLowerCase()).join(' ');
+            if (descriptions.includes('uber') || descriptions.includes('bolt')) {
+                vibe = "Always on the move 🚗";
+                tip = "Transport costs are adding up. Ever tried a matatu?";
+                persona = "The Commuter";
+            } else if (descriptions.includes('kfc') || descriptions.includes('java') || descriptions.includes('bistro')) {
+                vibe = "Foodie life 🍔";
+                tip = "Cooking at home could save you thousands.";
+                persona = "The Foodie";
+            }
+        }
+
+        return { vibe, tip, persona };
     }
 
     // summarize data to Context
