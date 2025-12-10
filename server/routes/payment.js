@@ -8,7 +8,8 @@ const router = express.Router();
 // --- Configuration ---
 const CONSUMER_KEY = process.env.MPESA_CONSUMER_KEY;
 const CONSUMER_SECRET = process.env.MPESA_CONSUMER_SECRET;
-const PASSKEY = process.env.MPESA_PASSKEY;
+// Standard Sandbox Passkey (Publicly available for 174379)
+const PASSKEY = process.env.MPESA_PASSKEY || 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919';
 const SHORTCODE = process.env.MPESA_SHORTCODE || '174379'; // Default Test Paybill
 // Safaricom rejects 'localhost'. We use a dummy valid URL to allow the STK Push to trigger.
 // In production, this MUST be your real live domain.
